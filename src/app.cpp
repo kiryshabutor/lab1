@@ -73,7 +73,7 @@ void App::editEmployee() {
 }
 
 void App::run() {
-    setlocale(LC_ALL, "");
+    
 
     while (true) {
         showMenu();
