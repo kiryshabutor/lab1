@@ -1,4 +1,4 @@
-#include "../includes/date.h"
+ï»¿#include "../includes/date.h"
 #include "../includes/input_utils.h"
 #include <iostream>
 #include <ctime>
@@ -27,11 +27,11 @@ bool Date::isLeapYear(int y) {
 
 bool Date::isValidDate(int d, int m, int y) {
     if (y < 1 || y > currentYear) {
-        cout << "Íåêîððåêòíûé ãîä\n";
+        cout << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð³Ð¾Ð´\n";
         return false;
     }
     if (m < 1 || m > 12) {
-        cout << "Íåò òàêîãî ìåñÿöà\n";
+        cout << "ÐÐµÑ‚ Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð¼ÐµÑÑÑ†Ð°\n";
         return false;
     }
 
@@ -39,13 +39,13 @@ bool Date::isValidDate(int d, int m, int y) {
     if (isLeapYear(y)) daysInMonth[1] = 29;
 
     if (d < 1 || d > daysInMonth[m - 1]) {
-        cout << "Â ýòîì ìåñÿöå íåò òàêîãî äíÿ\n";
+        cout << "Ð’ ÑÑ‚Ð¾Ð¼ Ð¼ÐµÑÑÑ†Ðµ Ð½ÐµÑ‚ Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð´Ð½Ñ\n";
         return false;
     }
 
     if (y == currentYear) {
         if (m > currentMonth || (m == currentMonth && d > currentDay)) {
-            cout << "Îøèáêà: ââåäåííàÿ äàòà íàõîäèòñÿ â áóäóùåì.\n";
+            cout << "ÐžÑˆÐ¸Ð±ÐºÐ°: Ð²Ð²ÐµÐ´ÐµÐ½Ð½Ð°Ñ Ð´Ð°Ñ‚Ð° Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚ÑÑ Ð² Ð±ÑƒÐ´ÑƒÑ‰ÐµÐ¼.\n";
             return false;
         }
     }
@@ -66,7 +66,7 @@ int Date::safeInputData(string prompt) {
     while (true) {
         value = safePositiveInputInt(prompt);
         if (value > 0) break;
-        cout << "Äàòà ìîæåò áûòü òîëüêî ïîëîæèòåëüíîé\n";
+        cout << "Ð”Ð°Ñ‚Ð° Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð¹\n";
     }
     return value;
 }
@@ -74,10 +74,10 @@ int Date::safeInputData(string prompt) {
 void Date::inputDate() {
     int d, m, y;
     while (true) {
-        cout << "Ââåäèòå äàòó:\n";
-        d = safeInputData("Äåíü: ");
-        m = safeInputData("Ìåñÿö: ");
-        y = safeInputData("Ãîä: ");
+        cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð´Ð°Ñ‚Ñƒ:\n";
+        d = safeInputData("Ð”ÐµÐ½ÑŒ: ");
+        m = safeInputData("ÐœÐµÑÑÑ†: ");
+        y = safeInputData("Ð“Ð¾Ð´: ");
 
         if (isValidDate(d, m, y)) {
             day = d;
@@ -86,7 +86,7 @@ void Date::inputDate() {
             break;
         }
         else {
-            cout << "Ïîïðîáóéòå ñíîâà.\n";
+            cout << "ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÑÐ½Ð¾Ð²Ð°.\n";
         }
     }
 }

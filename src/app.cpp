@@ -1,4 +1,4 @@
-#include "../includes/app.h"
+ï»¿#include "../includes/app.h"
 #include "../includes/input_utils.h"
 #include <iostream>
 using namespace std;
@@ -8,28 +8,28 @@ App::App() {}
 App::~App() {}
 
 void App::showMenu() {
-    cout << "\n==== ÌÅÍÞ ====\n";
-    cout << "1. Äîáàâèòü ñîòðóäíèêà\n";
-    cout << "2. Óäàëèòü ñîòðóäíèêà\n";
-    cout << "3. Âûâåñòè âñåõ ñîòðóäíèêîâ\n";
-    cout << "4. Èçìåíèòü äàííûå ñîòðóäíèêà\n";
-    cout << "5. Âûõîä\n";
+    cout << "\n==== ÐœÐ•ÐÐ® ====\n";
+    cout << "1. Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°\n";
+    cout << "2. Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°\n";
+    cout << "3. Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð²ÑÐµÑ… ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð²\n";
+    cout << "4. Ð˜Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð´Ð°Ð½Ð½Ñ‹Ðµ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ°\n";
+    cout << "5. Ð’Ñ‹Ñ…Ð¾Ð´\n";
 }
 
 void App::addEmployee() {
     Employee e;
-    cout << "\n--- Äîáàâëåíèå ñîòðóäíèêà ---\n";
+    cout << "\n--- Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ° ---\n";
     e.getEmploy();
     employees.push_back(e);
-    cout << "Ñîòðóäíèê äîáàâëåí.\n";
+    cout << "Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½.\n";
 }
 
 void App::listEmployees() {
     if (employees.empty()) {
-        cout << "Ñïèñîê ïóñò.\n";
+        cout << "Ð¡Ð¿Ð¸ÑÐ¾Ðº Ð¿ÑƒÑÑ‚.\n";
         return;
     }
-    cout << "\n===== Ñïèñîê ñîòðóäíèêîâ =====\n";
+    cout << "\n===== Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ¾Ð² =====\n";
     for (int i = 0; i < (int)employees.size(); i++) {
         cout << "\n#" << (i + 1) << "\n";
         employees[i].putEmploy();
@@ -45,28 +45,28 @@ int App::findById(int id) {
 
 void App::deleteEmployee() {
     if (employees.empty()) {
-        cout << "Óäàëÿòü íå÷åãî, ñïèñîê ïóñò.\n";
+        cout << "Ð£Ð´Ð°Ð»ÑÑ‚ÑŒ Ð½ÐµÑ‡ÐµÐ³Ð¾, ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿ÑƒÑÑ‚.\n";
         return;
     }
-    int id = safePositiveInputInt("Ââåäèòå ID ñîòðóäíèêà äëÿ óäàëåíèÿ: ");
+    int id = safePositiveInputInt("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ID ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ° Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: ");
     int idx = findById(id);
     if (idx == -1) {
-        cout << "Ñîòðóäíèê ñ òàêèì ID íå íàéäåí.\n";
+        cout << "Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº Ñ Ñ‚Ð°ÐºÐ¸Ð¼ ID Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½.\n";
         return;
     }
     employees.erase(employees.begin() + idx);
-    cout << "Ñîòðóäíèê óäàë¸í.\n";
+    cout << "Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº ÑƒÐ´Ð°Ð»Ñ‘Ð½.\n";
 }
 
 void App::editEmployee() {
     if (employees.empty()) {
-        cout << "Ðåäàêòèðîâàòü íå÷åãî, ñïèñîê ïóñò.\n";
+        cout << "Ð ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð½ÐµÑ‡ÐµÐ³Ð¾, ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿ÑƒÑÑ‚.\n";
         return;
     }
-    int id = safePositiveInputInt("Ââåäèòå ID ñîòðóäíèêà äëÿ ðåäàêòèðîâàíèÿ: ");
+    int id = safePositiveInputInt("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ID ÑÐ¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸ÐºÐ° Ð´Ð»Ñ Ñ€ÐµÐ´Ð°ÐºÑ‚Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ: ");
     int idx = findById(id);
     if (idx == -1) {
-        cout << "Ñîòðóäíèê ñ òàêèì ID íå íàéäåí.\n";
+        cout << "Ð¡Ð¾Ñ‚Ñ€ÑƒÐ´Ð½Ð¸Ðº Ñ Ñ‚Ð°ÐºÐ¸Ð¼ ID Ð½Ðµ Ð½Ð°Ð¹Ð´ÐµÐ½.\n";
         return;
     }
     employees[idx].edit();
@@ -77,17 +77,17 @@ void App::run() {
 
     while (true) {
         showMenu();
-        int choice = safeInputInt("Âûáîð: ");
+        int choice = safeInputInt("Ð’Ñ‹Ð±Ð¾Ñ€: ");
         switch (choice) {
         case 1: addEmployee();    break;
         case 2: deleteEmployee();  break;
         case 3: listEmployees();   break;
         case 4: editEmployee();    break;
         case 5:
-            cout << "Âûõîä.\n";
+            cout << "Ð’Ñ‹Ñ…Ð¾Ð´.\n";
             return;
         default:
-            cout << "Íåêîððåêòíûé ïóíêò ìåíþ.\n";
+            cout << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ñ‹Ð¹ Ð¿ÑƒÐ½ÐºÑ‚ Ð¼ÐµÐ½ÑŽ.\n";
         }
     }
 }
