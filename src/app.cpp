@@ -13,11 +13,17 @@ App::~App() {
 void App::resize() {
     int newCapacity = (capacity == 0) ? 2 : capacity * 2;
     Employee* newArr = new Employee[newCapacity];
-    for (int i = 0; i < size; ++i) newArr[i] = employees[i];
+
+    int limit = (size < newCapacity) ? size : newCapacity;
+    for (int i = 0; i < limit; ++i) {
+        newArr[i] = employees[i];
+    }
+
     delete[] employees;
     employees = newArr;
     capacity = newCapacity;
 }
+
 
 void App::showMenu() const {
     cout << "\n==== МЕНЮ ====\n";
