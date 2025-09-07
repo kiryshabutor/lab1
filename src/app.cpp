@@ -13,16 +13,13 @@ App::~App() {
 void App::resize() {
     int newCapacity = (capacity == 0) ? 2 : capacity * 2;
     Employee* newArr = new Employee[newCapacity];
-
     int limit = (size < newCapacity) ? size : newCapacity;
-    for (int i = 0; i < limit; ++i) {
-        newArr[i] = employees[i];
-    }
-
+    for (int i = 0; i < limit; ++i) newArr[i] = employees[i];
     delete[] employees;
     employees = newArr;
     capacity = newCapacity;
 }
+
 
 
 void App::showMenu() const {
@@ -35,14 +32,15 @@ void App::showMenu() const {
 }
 
 void App::addEmployee() {
-    if (size == capacity) resize();
     Employee e;
     cout << "\n--- Добавление сотрудника ---\n";
     e.getEmploy();
-    if (capacity == 0) resize();
-    employees[size++] = e;
+    while (size >= capacity) resize();
+    employees[size] = e;
+    ++size;
     cout << "Сотрудник добавлен.\n";
 }
+
 
 void App::listEmployees() const {
     if (size == 0) {
