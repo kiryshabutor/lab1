@@ -1,7 +1,9 @@
 ﻿#include "../includes/input_utils.h"
+
 #include <iostream>
 #include <string>
 #include <regex>
+#include <stdexcept>
 
 using namespace std;
 
@@ -22,7 +24,10 @@ int safeInputInt(const string& prompt) {
                 number = stoi(input);
                 break;
             }
-            catch (...) {
+            catch (const std::invalid_argument&) {
+                cout << "Невалидный ввод. Введите число.\n";
+            }
+            catch (const std::out_of_range&) {
                 cout << "Число вне диапазона int. Введите заново.\n";
             }
         }
@@ -60,7 +65,10 @@ float safeInputFloat(const string& prompt) {
                 number = stof(input);
                 break;
             }
-            catch (...) {
+            catch (const std::invalid_argument&) {
+                cout << "Невалидный ввод. Введите число.\n";
+            }
+            catch (const std::out_of_range&) {
                 cout << "Число вне диапазона float. Введите заново.\n";
             }
         }
