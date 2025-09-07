@@ -65,23 +65,13 @@ void Date::getCurrentDate() {
     currentYear = localTime.tm_year + 1900;
 }
 
-int Date::safeInputData(const string& prompt) {
-    int value;
-    while (true) {
-        value = safePositiveInputInt(prompt);
-        if (value > 0) break;
-        cout << "Дата может быть только положительной\n";
-    }
-    return value;
-}
-
 void Date::inputDate() {
     int d, m, y;
     while (true) {
         cout << "Введите дату:\n";
-        d = safeInputData("День: ");
-        m = safeInputData("Месяц: ");
-        y = safeInputData("Год: ");
+        d = safePositiveInputInt("День: ");
+        m = safePositiveInputInt("Месяц: ");
+        y = safePositiveInputInt("Год: ");
 
         if (isValidDate(d, m, y)) {
             day = d;

@@ -14,7 +14,6 @@ private:
     bool isLeapYear(int y) const;
     bool isValidDate(int d, int m, int y) const;
     void getCurrentDate();
-    int safeInputData(const std::string& prompt);
 
 public:
     Date();
