@@ -74,12 +74,11 @@ void Employee::edit() {
         cout << "Готово.\n";
         break;
     case 4: {
-        int t = safeInputInt(
+        switch (safeInputInt(
             "Новая должность:\n"
             "1 - Лаборант\n2 - Секретарь\n3 - Менеджер\n4 - Инженер\n5 - Директор\n"
             "Выбор: "
-        );
-        switch (t) {
+        )) {
         case 1: type = EmployeeType::LABORANT; break;
         case 2: type = EmployeeType::SECRETARY; break;
         case 3: type = EmployeeType::MANAGER; break;
