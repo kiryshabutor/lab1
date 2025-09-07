@@ -1,8 +1,9 @@
 #pragma once
+
 #include "date.h"
 #include <string>
 
-enum EmployeeType {
+enum class EmployeeType {
     LABORANT = 1,
     SECRETARY,
     MANAGER,

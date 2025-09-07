@@ -9,12 +9,12 @@ Employee::Employee(int id, float s, Date d, EmployeeType t)
 
 string employeeTypeToString(EmployeeType type) {
     switch (type) {
-    case LABORANT:  return "Лаборант";
-    case SECRETARY: return "Секретарь";
-    case MANAGER:   return "Менеджер";
-    case ENGINEER:  return "Инженер";
-    case DIRECTOR:  return "Директор";
-    default:        return "Неизвестно";
+    case EmployeeType::LABORANT:  return "Лаборант";
+    case EmployeeType::SECRETARY: return "Секретарь";
+    case EmployeeType::MANAGER:   return "Менеджер";
+    case EmployeeType::ENGINEER:  return "Инженер";
+    case EmployeeType::DIRECTOR:  return "Директор";
+    default:                      return "Неизвестно";
     }
 }
 
@@ -30,20 +30,21 @@ void Employee::getEmploy() {
     );
 
     switch (typeChoice) {
-    case 1: type = LABORANT; break;
-    case 2: type = SECRETARY; break;
-    case 3: type = MANAGER; break;
-    case 4: type = ENGINEER; break;
-    case 5: type = DIRECTOR; break;
-    default: type = LABORANT; break;
+    case 1: type = EmployeeType::LABORANT; break;
+    case 2: type = EmployeeType::SECRETARY; break;
+    case 3: type = EmployeeType::MANAGER; break;
+    case 4: type = EmployeeType::ENGINEER; break;
+    case 5: type = EmployeeType::DIRECTOR; break;
+    default: type = EmployeeType::LABORANT; break;
     }
 }
 
-void Employee::putEmploy() const{
+void Employee::putEmploy() const {
     cout << "Номер: " << employeeId << "\n";
     cout << "Оклад: " << salary << "\n";
-    cout << "Дата приема: "; hireDate.printDate(); cout << "\n";
-    cout << "Должность: " << employeeTypeToString(type) << "\n";
+    cout << "Дата приема: ";
+    hireDate.printDate();
+    cout << "\nДолжность: " << employeeTypeToString(type) << "\n";
 }
 
 int Employee::getId() const {
@@ -57,7 +58,6 @@ void Employee::edit() {
     cout << "3. Изменить дату приема\n";
     cout << "4. Изменить должность\n";
     cout << "5. Отмена\n";
-
     int choice = safeInputInt("Выбор: ");
     switch (choice) {
     case 1:
@@ -74,16 +74,17 @@ void Employee::edit() {
         cout << "Готово.\n";
         break;
     case 4: {
-        switch (int t = safeInputInt(
+        int t = safeInputInt(
             "Новая должность:\n"
             "1 - Лаборант\n2 - Секретарь\n3 - Менеджер\n4 - Инженер\n5 - Директор\n"
-            "Выбор: "))
-        {
-        case 1: type = LABORANT; break;
-        case 2: type = SECRETARY; break;
-        case 3: type = MANAGER; break;
-        case 4: type = ENGINEER; break;
-        case 5: type = DIRECTOR; break;
+            "Выбор: "
+        );
+        switch (t) {
+        case 1: type = EmployeeType::LABORANT; break;
+        case 2: type = EmployeeType::SECRETARY; break;
+        case 3: type = EmployeeType::MANAGER; break;
+        case 4: type = EmployeeType::ENGINEER; break;
+        case 5: type = EmployeeType::DIRECTOR; break;
         default: cout << "Некорректный выбор. Должность не изменена.\n"; break;
         }
         cout << "Готово.\n";
