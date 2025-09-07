@@ -3,9 +3,9 @@
 
 class App {
 private:
-    Employee* employees;
-    int size;
-    int capacity;
+    Employee* employees = nullptr;
+    int size = 0;
+    int capacity = 0;
 
     void resize();
     void showMenu() const;
@@ -15,13 +15,11 @@ private:
     void deleteEmployee();
     void editEmployee();
 
-    App(const App&) = delete;
-    App& operator=(const App&) = delete;
-
 public:
     App();
     ~App();
 
     void run();
 };
+
 

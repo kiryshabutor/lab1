@@ -4,7 +4,7 @@
 
 using namespace std;
 
-App::App() : employees(nullptr), size(0), capacity(0) {}
+App::App() = default;
 
 App::~App() {
     delete[] employees;
