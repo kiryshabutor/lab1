@@ -3,10 +3,6 @@
 #include <iostream>
 using namespace std;
 
-App::App() {}
-
-App::~App() {}
-
 void App::showMenu() {
     cout << "\n==== МЕНЮ ====\n";
     cout << "1. Добавить сотрудника\n";
@@ -73,16 +69,14 @@ void App::editEmployee() {
 }
 
 void App::run() {
-    
-
     while (true) {
         showMenu();
         int choice = safeInputInt("Выбор: ");
         switch (choice) {
         case 1: addEmployee();    break;
-        case 2: deleteEmployee();  break;
-        case 3: listEmployees();   break;
-        case 4: editEmployee();    break;
+        case 2: deleteEmployee(); break;
+        case 3: listEmployees();  break;
+        case 4: editEmployee();   break;
         case 5:
             cout << "Выход.\n";
             return;

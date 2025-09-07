@@ -20,9 +20,9 @@ private:
     EmployeeType type;
 
 public:
-    Employee();
+    Employee() = default;
     Employee(int id, float s, Date d, EmployeeType t);
-    ~Employee();
+    ~Employee() = default;
 
     void getEmploy();
     void putEmploy();

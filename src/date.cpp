@@ -19,8 +19,6 @@ Date::Date(int d, int m, int y) {
     getCurrentDate();
 }
 
-Date::~Date() {}
-
 bool Date::isLeapYear(int y) {
     return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
 }

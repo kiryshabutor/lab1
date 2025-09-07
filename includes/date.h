@@ -19,7 +19,7 @@ private:
 public:
     Date();
     Date(int d, int m, int y);
-    ~Date();
+    ~Date() = default;
 
     void inputDate();
     void printDate();

@@ -4,12 +4,8 @@
 
 using namespace std;
 
-Employee::Employee() : employeeId(0), salary(0.0f), hireDate(), type(LABORANT) {}
-
 Employee::Employee(int id, float s, Date d, EmployeeType t)
     : employeeId(id), salary(s), hireDate(d), type(t) {}
-
-Employee::~Employee() {}
 
 string employeeTypeToString(EmployeeType type) {
     switch (type) {
@@ -50,7 +46,9 @@ void Employee::putEmploy() {
     cout << "Должность: " << employeeTypeToString(type) << "\n";
 }
 
-int Employee::getId() { return employeeId; }
+int Employee::getId() {
+    return employeeId;
+}
 
 void Employee::edit() {
     cout << "\nРедактирование сотрудника (ID: " << employeeId << ")\n";
@@ -59,6 +57,7 @@ void Employee::edit() {
     cout << "3. Изменить дату приема\n";
     cout << "4. Изменить должность\n";
     cout << "5. Отмена\n";
+
     int choice = safeInputInt("Выбор: ");
     switch (choice) {
     case 1:

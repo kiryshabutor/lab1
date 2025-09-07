@@ -14,8 +14,8 @@ private:
     void editEmployee();
 
 public:
-    App();
-    ~App();
+    App() = default;
+    ~App() = default;
 
     void run();
 };
