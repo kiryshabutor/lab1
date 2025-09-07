@@ -14,7 +14,7 @@ private:
     bool isLeapYear(int y);
     bool isValidDate(int d, int m, int y);
     void getCurrentDate();
-    int safeInputData(std::string prompt);
+    int safeInputData(const std::string& prompt);
 
 public:
     Date();
@@ -22,5 +22,5 @@ public:
     ~Date() = default;
 
     void inputDate();
-    void printDate();
+    void printDate() const;
 };

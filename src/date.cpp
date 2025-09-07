@@ -5,17 +5,11 @@
 
 using namespace std;
 
-Date::Date() {
-    day = 1;
-    month = 1;
-    year = 2000;
+Date::Date() : day(1), month(1), year(2000) {
     getCurrentDate();
 }
 
-Date::Date(int d, int m, int y) {
-    day = d;
-    month = m;
-    year = y;
+Date::Date(int d, int m, int y) : day(d), month(m), year(y) {
     getCurrentDate();
 }
 
@@ -28,6 +22,7 @@ bool Date::isValidDate(int d, int m, int y) {
         cout << "Некорректный год\n";
         return false;
     }
+
     if (m < 1 || m > 12) {
         cout << "Нет такого месяца\n";
         return false;
@@ -47,6 +42,7 @@ bool Date::isValidDate(int d, int m, int y) {
             return false;
         }
     }
+
     return true;
 }
 
@@ -59,7 +55,7 @@ void Date::getCurrentDate() {
     currentYear = localTime.tm_year + 1900;
 }
 
-int Date::safeInputData(string prompt) {
+int Date::safeInputData(const string& prompt) {
     int value;
     while (true) {
         value = safePositiveInputInt(prompt);
@@ -89,6 +85,6 @@ void Date::inputDate() {
     }
 }
 
-void Date::printDate() {
+void Date::printDate() const {
     cout << day << "." << month << "." << year;
 }
