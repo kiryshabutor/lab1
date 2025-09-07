@@ -5,10 +5,9 @@
 
 using namespace std;
 
-int safeInputInt(string prompt) {
+int safeInputInt(const string& prompt) {
     string input;
     int number;
-
     regex pat(R"(^[+-]?\d+$)");
 
     while (true) {
@@ -31,10 +30,11 @@ int safeInputInt(string prompt) {
             cout << "Некорректный ввод. Введите целое число (можно с + или -).\n";
         }
     }
+
     return number;
 }
 
-int safePositiveInputInt(string prompt) {
+int safePositiveInputInt(const string& prompt) {
     int number;
     while (true) {
         number = safeInputInt(prompt);
@@ -43,10 +43,9 @@ int safePositiveInputInt(string prompt) {
     }
 }
 
-float safeInputFloat(string prompt) {
+float safeInputFloat(const string& prompt) {
     string input;
     float number;
-
     regex pat(R"(^[+-]?(\d+(\.\d*)?|\.\d+)$)");
 
     while (true) {
@@ -69,10 +68,11 @@ float safeInputFloat(string prompt) {
             cout << "Некорректный ввод. Введите вещественное число (можно с + или -).\n";
         }
     }
+
     return number;
 }
 
-float safePositiveInputFloat(string prompt) {
+float safePositiveInputFloat(const string& prompt) {
     float number;
     while (true) {
         number = safeInputFloat(prompt);
