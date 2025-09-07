@@ -3,18 +3,20 @@
 #include <iostream>
 
 using namespace std;
+using enum EmployeeType;
 
 Employee::Employee(int id, float s, Date d, EmployeeType t)
     : employeeId(id), salary(s), hireDate(d), type(t) {}
 
 string employeeTypeToString(EmployeeType type) {
+    using enum EmployeeType;
     switch (type) {
-    case EmployeeType::LABORANT:  return "Лаборант";
-    case EmployeeType::SECRETARY: return "Секретарь";
-    case EmployeeType::MANAGER:   return "Менеджер";
-    case EmployeeType::ENGINEER:  return "Инженер";
-    case EmployeeType::DIRECTOR:  return "Директор";
-    default:                      return "Неизвестно";
+    case LABORANT:  return "Лаборант";
+    case SECRETARY: return "Секретарь";
+    case MANAGER:   return "Менеджер";
+    case ENGINEER:  return "Инженер";
+    case DIRECTOR:  return "Директор";
+    default:        return "Неизвестно";
     }
 }
 
@@ -30,12 +32,12 @@ void Employee::getEmploy() {
     );
 
     switch (typeChoice) {
-    case 1: type = EmployeeType::LABORANT; break;
-    case 2: type = EmployeeType::SECRETARY; break;
-    case 3: type = EmployeeType::MANAGER; break;
-    case 4: type = EmployeeType::ENGINEER; break;
-    case 5: type = EmployeeType::DIRECTOR; break;
-    default: type = EmployeeType::LABORANT; break;
+    case 1: type = LABORANT; break;
+    case 2: type = SECRETARY; break;
+    case 3: type = MANAGER; break;
+    case 4: type = ENGINEER; break;
+    case 5: type = DIRECTOR; break;
+    default: type = LABORANT; break;
     }
 }
 
@@ -79,11 +81,11 @@ void Employee::edit() {
             "1 - Лаборант\n2 - Секретарь\n3 - Менеджер\n4 - Инженер\n5 - Директор\n"
             "Выбор: "
         )) {
-        case 1: type = EmployeeType::LABORANT; break;
-        case 2: type = EmployeeType::SECRETARY; break;
-        case 3: type = EmployeeType::MANAGER; break;
-        case 4: type = EmployeeType::ENGINEER; break;
-        case 5: type = EmployeeType::DIRECTOR; break;
+        case 1: type = LABORANT; break;
+        case 2: type = SECRETARY; break;
+        case 3: type = MANAGER; break;
+        case 4: type = ENGINEER; break;
+        case 5: type = DIRECTOR; break;
         default: cout << "Некорректный выбор. Должность не изменена.\n"; break;
         }
         cout << "Готово.\n";
