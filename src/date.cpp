@@ -37,11 +37,9 @@ bool Date::isValidDate(int d, int m, int y) const{
         return false;
     }
 
-    if (y == currentYear) {
-        if (m > currentMonth || (m == currentMonth && d > currentDay)) {
-            cout << "Ошибка: введенная дата находится в будущем.\n";
-            return false;
-        }
+    if (y == currentYear && m > currentMonth || (m == currentMonth && d > currentDay)) {
+        cout << "Ошибка: введенная дата находится в будущем.\n";
+        return false;
     }
 
     return true;
