@@ -39,7 +39,7 @@ void Employee::getEmploy() {
     }
 }
 
-void Employee::putEmploy() {
+void Employee::putEmploy() const{
     cout << "Номер: " << employeeId << "\n";
     cout << "Оклад: " << salary << "\n";
     cout << "Дата приема: "; hireDate.printDate(); cout << "\n";

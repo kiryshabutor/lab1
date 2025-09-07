@@ -25,7 +25,7 @@ public:
     ~Employee() = default;
 
     void getEmploy();
-    void putEmploy();
+    void putEmploy() const;
     void edit();
     int getId() const;
 };
