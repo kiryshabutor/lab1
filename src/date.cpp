@@ -65,7 +65,9 @@ void Date::getCurrentDate() {
 }
 
 void Date::inputDate() {
-    int d, m, y;
+    int d;
+    int m;
+    int y;
     while (true) {
         cout << "Введите дату:\n";
         d = safePositiveInputInt("День: ");
