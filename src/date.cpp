@@ -14,11 +14,11 @@ Date::Date(int d, int m, int y) : day(d), month(m), year(y) {
     getCurrentDate();
 }
 
-bool Date::isLeapYear(int y) {
+bool Date::isLeapYear(int y) const{
     return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
 }
 
-bool Date::isValidDate(int d, int m, int y) {
+bool Date::isValidDate(int d, int m, int y) const{
     if (y < 1 || y > currentYear) {
         cout << "Некорректный год\n";
         return false;
