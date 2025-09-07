@@ -27,5 +27,5 @@ public:
     void getEmploy();
     void putEmploy();
     void edit();
-    int getId();
+    int getId() const;
 };

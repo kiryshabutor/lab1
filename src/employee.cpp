@@ -46,7 +46,7 @@ void Employee::putEmploy() {
     cout << "Должность: " << employeeTypeToString(type) << "\n";
 }
 
-int Employee::getId() {
+int Employee::getId() const {
     return employeeId;
 }
 
