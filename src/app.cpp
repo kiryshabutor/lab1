@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-void App::showMenu() {
+void App::showMenu() const{
     cout << "\n==== МЕНЮ ====\n";
     cout << "1. Добавить сотрудника\n";
     cout << "2. Удалить сотрудника\n";
@@ -20,7 +20,7 @@ void App::addEmployee() {
     cout << "Сотрудник добавлен.\n";
 }
 
-void App::listEmployees() {
+void App::listEmployees(){
     if (employees.empty()) {
         cout << "Список пуст.\n";
         return;
@@ -32,7 +32,7 @@ void App::listEmployees() {
     }
 }
 
-int App::findById(int id) {
+int App::findById(int id) const{
     for (int i = 0; i < (int)employees.size(); i++) {
         if (employees[i].getId() == id) return i;
     }
@@ -68,7 +68,7 @@ void App::editEmployee() {
     employees[idx].edit();
 }
 
-void App::run() {
+void App::run(){
     while (true) {
         showMenu();
         int choice = safeInputInt("Выбор: ");

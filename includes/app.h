@@ -6,10 +6,10 @@ class App {
 private:
     std::vector<Employee> employees;
 
-    void showMenu();
+    void showMenu() const;
     void addEmployee();
     void listEmployees();
-    int  findById(int id);
+    int  findById(int id) const;
     void deleteEmployee();
     void editEmployee();
 
