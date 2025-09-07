@@ -1,21 +1,23 @@
 #pragma once
-#include <vector>
 #include "employee.h"
 
 class App {
 private:
-    std::vector<Employee> employees;
+    Employee* employees;
+    int size;
+    int capacity;
 
+    void resize();
     void showMenu() const;
     void addEmployee();
-    void listEmployees();
+    void listEmployees() const;
     int  findById(int id) const;
     void deleteEmployee();
     void editEmployee();
 
 public:
-    App() = default;
-    ~App() = default;
+    App();
+    ~App();
 
     void run();
 };

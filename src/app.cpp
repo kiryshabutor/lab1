@@ -1,9 +1,25 @@
 ﻿#include "../includes/app.h"
 #include "../includes/input_utils.h"
 #include <iostream>
+
 using namespace std;
 
-void App::showMenu() const{
+App::App() : employees(nullptr), size(0), capacity(0) {}
+
+App::~App() {
+    delete[] employees;
+}
+
+void App::resize() {
+    int newCapacity = (capacity == 0) ? 2 : capacity * 2;
+    Employee* newArr = new Employee[newCapacity];
+    for (int i = 0; i < size; i++) newArr[i] = employees[i];
+    delete[] employees;
+    employees = newArr;
+    capacity = newCapacity;
+}
+
+void App::showMenu() const {
     cout << "\n==== МЕНЮ ====\n";
     cout << "1. Добавить сотрудника\n";
     cout << "2. Удалить сотрудника\n";
@@ -13,34 +29,35 @@ void App::showMenu() const{
 }
 
 void App::addEmployee() {
+    if (size == capacity) resize();
     Employee e;
     cout << "\n--- Добавление сотрудника ---\n";
     e.getEmploy();
-    employees.push_back(e);
+    employees[size++] = e;
     cout << "Сотрудник добавлен.\n";
 }
 
-void App::listEmployees(){
-    if (employees.empty()) {
+void App::listEmployees() const {
+    if (size == 0) {
         cout << "Список пуст.\n";
         return;
     }
     cout << "\n===== Список сотрудников =====\n";
-    for (int i = 0; i < (int)employees.size(); i++) {
+    for (int i = 0; i < size; i++) {
         cout << "\n#" << (i + 1) << "\n";
         employees[i].putEmploy();
     }
 }
 
-int App::findById(int id) const{
-    for (int i = 0; i < (int)employees.size(); i++) {
+int App::findById(int id) const {
+    for (int i = 0; i < size; i++) {
         if (employees[i].getId() == id) return i;
     }
     return -1;
 }
 
 void App::deleteEmployee() {
-    if (employees.empty()) {
+    if (size == 0) {
         cout << "Удалять нечего, список пуст.\n";
         return;
     }
@@ -50,12 +67,13 @@ void App::deleteEmployee() {
         cout << "Сотрудник с таким ID не найден.\n";
         return;
     }
-    employees.erase(employees.begin() + idx);
+    for (int i = idx; i < size - 1; i++) employees[i] = employees[i + 1];
+    size--;
     cout << "Сотрудник удалён.\n";
 }
 
 void App::editEmployee() {
-    if (employees.empty()) {
+    if (size == 0) {
         cout << "Редактировать нечего, список пуст.\n";
         return;
     }
@@ -68,7 +86,7 @@ void App::editEmployee() {
     employees[idx].edit();
 }
 
-void App::run(){
+void App::run() {
     while (true) {
         showMenu();
         int choice = safeInputInt("Выбор: ");
