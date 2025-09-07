@@ -1,6 +1,7 @@
 ﻿#include "../includes/date.h"
 #include "../includes/input_utils.h"
 #include <iostream>
+#include <chrono>
 #include <ctime>
 
 using namespace std;
@@ -47,9 +48,18 @@ bool Date::isValidDate(int d, int m, int y) {
 }
 
 void Date::getCurrentDate() {
-    time_t now = time(nullptr);
-    tm localTime;
-    localtime_s(&localTime, &now);
+    using namespace std::chrono;
+
+    auto now = system_clock::now();
+    time_t timeNow = system_clock::to_time_t(now);
+
+    tm localTime{};
+#ifdef _WIN32
+    localtime_s(&localTime, &timeNow);
+#else
+    localtime_r(&timeNow, &localTime);
+#endif
+
     currentDay = localTime.tm_mday;
     currentMonth = localTime.tm_mon + 1;
     currentYear = localTime.tm_year + 1900;
