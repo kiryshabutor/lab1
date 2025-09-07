@@ -13,7 +13,7 @@ App::~App() {
 void App::resize() {
     int newCapacity = (capacity == 0) ? 2 : capacity * 2;
     Employee* newArr = new Employee[newCapacity];
-    for (int i = 0; i < size; i++) newArr[i] = employees[i];
+    for (int i = 0; i < size; ++i) newArr[i] = employees[i];
     delete[] employees;
     employees = newArr;
     capacity = newCapacity;
@@ -33,6 +33,7 @@ void App::addEmployee() {
     Employee e;
     cout << "\n--- Добавление сотрудника ---\n";
     e.getEmploy();
+    if (capacity == 0) resize();
     employees[size++] = e;
     cout << "Сотрудник добавлен.\n";
 }
@@ -43,14 +44,14 @@ void App::listEmployees() const {
         return;
     }
     cout << "\n===== Список сотрудников =====\n";
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; ++i) {
         cout << "\n#" << (i + 1) << "\n";
         employees[i].putEmploy();
     }
 }
 
 int App::findById(int id) const {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; ++i) {
         if (employees[i].getId() == id) return i;
     }
     return -1;
@@ -67,8 +68,8 @@ void App::deleteEmployee() {
         cout << "Сотрудник с таким ID не найден.\n";
         return;
     }
-    for (int i = idx; i < size - 1; i++) employees[i] = employees[i + 1];
-    size--;
+    for (int i = idx; i < size - 1; ++i) employees[i] = employees[i + 1];
+    --size;
     cout << "Сотрудник удалён.\n";
 }
 

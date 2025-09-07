@@ -15,9 +15,13 @@ private:
     void deleteEmployee();
     void editEmployee();
 
+    App(const App&) = delete;
+    App& operator=(const App&) = delete;
+
 public:
     App();
     ~App();
 
     void run();
 };
+
