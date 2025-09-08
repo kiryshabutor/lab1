@@ -11,12 +11,18 @@ Employee::Employee(int id, float s, Date d, EmployeeType t)
 string employeeTypeToString(EmployeeType type) {
     using enum EmployeeType;
     switch (type) {
-    case LABORANT:  return "Лаборант";
-    case SECRETARY: return "Секретарь";
-    case MANAGER:   return "Менеджер";
-    case ENGINEER:  return "Инженер";
-    case DIRECTOR:  return "Директор";
-    default:        return "Неизвестно";
+    case LABORANT:
+        return "Лаборант";
+    case SECRETARY:
+        return "Секретарь";
+    case MANAGER:
+        return "Менеджер";
+    case ENGINEER:
+        return "Инженер";
+    case DIRECTOR:
+        return "Директор";
+    default:
+        return "Неизвестно";
     }
 }
 
@@ -28,16 +34,27 @@ void Employee::getEmploy() {
     int typeChoice = safeInputInt(
         "Выберите должность сотрудника:\n"
         "1 - Лаборант\n2 - Секретарь\n3 - Менеджер\n4 - Инженер\n5 - Директор\n"
-        "Выбор: "
-    );
+        "Выбор: ");
 
     switch (typeChoice) {
-    case 1: type = LABORANT; break;
-    case 2: type = SECRETARY; break;
-    case 3: type = MANAGER; break;
-    case 4: type = ENGINEER; break;
-    case 5: type = DIRECTOR; break;
-    default: type = LABORANT; break;
+    case 1:
+        type = LABORANT;
+        break;
+    case 2:
+        type = SECRETARY;
+        break;
+    case 3:
+        type = MANAGER;
+        break;
+    case 4:
+        type = ENGINEER;
+        break;
+    case 5:
+        type = DIRECTOR;
+        break;
+    default:
+        type = LABORANT;
+        break;
     }
 }
 
@@ -49,9 +66,7 @@ void Employee::putEmploy() const {
     cout << "\nДолжность: " << employeeTypeToString(type) << "\n";
 }
 
-int Employee::getId() const {
-    return employeeId;
-}
+int Employee::getId() const { return employeeId; }
 
 void Employee::edit() {
     cout << "\nРедактирование сотрудника (ID: " << employeeId << ")\n";
@@ -76,17 +91,28 @@ void Employee::edit() {
         cout << "Готово.\n";
         break;
     case 4: {
-        switch (safeInputInt(
-            "Новая должность:\n"
-            "1 - Лаборант\n2 - Секретарь\n3 - Менеджер\n4 - Инженер\n5 - Директор\n"
-            "Выбор: "
-        )) {
-        case 1: type = LABORANT; break;
-        case 2: type = SECRETARY; break;
-        case 3: type = MANAGER; break;
-        case 4: type = ENGINEER; break;
-        case 5: type = DIRECTOR; break;
-        default: cout << "Некорректный выбор. Должность не изменена.\n"; break;
+        switch (safeInputInt("Новая должность:\n"
+                             "1 - Лаборант\n2 - Секретарь\n3 - Менеджер\n4 - "
+                             "Инженер\n5 - Директор\n"
+                             "Выбор: ")) {
+        case 1:
+            type = LABORANT;
+            break;
+        case 2:
+            type = SECRETARY;
+            break;
+        case 3:
+            type = MANAGER;
+            break;
+        case 4:
+            type = ENGINEER;
+            break;
+        case 5:
+            type = DIRECTOR;
+            break;
+        default:
+            cout << "Некорректный выбор. Должность не изменена.\n";
+            break;
         }
         cout << "Готово.\n";
         break;

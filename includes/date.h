@@ -2,7 +2,7 @@
 #include <string>
 
 class Date {
-private:
+  private:
     int day;
     int month;
     int year;
@@ -15,7 +15,7 @@ private:
     bool isValidDate(int d, int m, int y) const;
     void getCurrentDate();
 
-public:
+  public:
     Date();
     Date(int d, int m, int y);
     ~Date() = default;

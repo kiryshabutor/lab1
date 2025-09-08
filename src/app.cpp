@@ -6,21 +6,18 @@ using namespace std;
 
 App::App() = default;
 
-App::~App() {
-    delete[] employees;
-}
+App::~App() { delete[] employees; }
 
 void App::resize() {
     int newCapacity = (capacity == 0) ? 2 : capacity * 2;
-    Employee* newArr = new Employee[newCapacity];
+    Employee *newArr = new Employee[newCapacity];
     int limit = (size < newCapacity) ? size : newCapacity;
-    for (int i = 0; i < limit; ++i) newArr[i] = employees[i];
+    for (int i = 0; i < limit; ++i)
+        newArr[i] = employees[i];
     delete[] employees;
     employees = newArr;
     capacity = newCapacity;
 }
-
-
 
 void App::showMenu() const {
     cout << "\n==== МЕНЮ ====\n";
@@ -35,12 +32,12 @@ void App::addEmployee() {
     Employee e;
     cout << "\n--- Добавление сотрудника ---\n";
     e.getEmploy();
-    while (size >= capacity) resize();
+    while (size >= capacity)
+        resize();
     employees[size] = e;
     ++size;
     cout << "Сотрудник добавлен.\n";
 }
-
 
 void App::listEmployees() const {
     if (size == 0) {
@@ -56,7 +53,8 @@ void App::listEmployees() const {
 
 int App::findById(int id) const {
     for (int i = 0; i < size; ++i) {
-        if (employees[i].getId() == id) return i;
+        if (employees[i].getId() == id)
+            return i;
     }
     return -1;
 }
@@ -72,7 +70,8 @@ void App::deleteEmployee() {
         cout << "Сотрудник с таким ID не найден.\n";
         return;
     }
-    for (int i = idx; i < size - 1; ++i) employees[i] = employees[i + 1];
+    for (int i = idx; i < size - 1; ++i)
+        employees[i] = employees[i + 1];
     --size;
     cout << "Сотрудник удалён.\n";
 }
@@ -96,10 +95,18 @@ void App::run() {
         showMenu();
         int choice = safeInputInt("Выбор: ");
         switch (choice) {
-        case 1: addEmployee();    break;
-        case 2: deleteEmployee(); break;
-        case 3: listEmployees();  break;
-        case 4: editEmployee();   break;
+        case 1:
+            addEmployee();
+            break;
+        case 2:
+            deleteEmployee();
+            break;
+        case 3:
+            listEmployees();
+            break;
+        case 4:
+            editEmployee();
+            break;
         case 5:
             cout << "Выход.\n";
             return;

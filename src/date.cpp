@@ -1,25 +1,23 @@
 ﻿#include "../includes/date.h"
 #include "../includes/input_utils.h"
-#include <iostream>
 #include <array>
 #include <chrono>
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
-Date::Date() : day(1), month(1), year(2000) {
-    getCurrentDate();
-}
+Date::Date() : day(1), month(1), year(2000) { getCurrentDate(); }
 
 Date::Date(int d, int m, int y) : day(d), month(m), year(y) {
     getCurrentDate();
 }
 
-bool Date::isLeapYear(int y) const{
+bool Date::isLeapYear(int y) const {
     return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
 }
 
-bool Date::isValidDate(int d, int m, int y) const{
+bool Date::isValidDate(int d, int m, int y) const {
     if (y < 1 || y > currentYear) {
         cout << "Некорректный год\n";
         return false;
@@ -30,15 +28,18 @@ bool Date::isValidDate(int d, int m, int y) const{
         return false;
     }
 
-    array<int, 12> daysInMonth = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-    if (isLeapYear(y)) daysInMonth[1] = 29;
+    array<int, 12> daysInMonth = {31, 28, 31, 30, 31, 30,
+                                  31, 31, 30, 31, 30, 31};
+    if (isLeapYear(y))
+        daysInMonth[1] = 29;
 
     if (d < 1 || d > daysInMonth[m - 1]) {
         cout << "В этом месяце нет такого дня\n";
         return false;
     }
 
-    if (y == currentYear && m > currentMonth || (m == currentMonth && d > currentDay)) {
+    if (y == currentYear && m > currentMonth ||
+        (m == currentMonth && d > currentDay)) {
         cout << "Ошибка: введенная дата находится в будущем.\n";
         return false;
     }
@@ -79,13 +80,10 @@ void Date::inputDate() {
             month = m;
             year = y;
             break;
-        }
-        else {
+        } else {
             cout << "Попробуйте снова.\n";
         }
     }
 }
 
-void Date::printDate() const {
-    cout << day << "." << month << "." << year;
-}
+void Date::printDate() const { cout << day << "." << month << "." << year; }

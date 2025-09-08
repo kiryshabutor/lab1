@@ -1,5 +1,4 @@
 #pragma once
-
 #include "date.h"
 #include <string>
 
@@ -14,13 +13,13 @@ enum class EmployeeType {
 std::string employeeTypeToString(EmployeeType type);
 
 class Employee {
-private:
+  private:
     int employeeId;
     float salary;
     Date hireDate;
     EmployeeType type;
 
-public:
+  public:
     Employee() = default;
     Employee(int id, float s, Date d, EmployeeType t);
     ~Employee() = default;
