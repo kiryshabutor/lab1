@@ -34,8 +34,8 @@ void App::addEmployee() {
     e.getEmploy();
     while (size >= capacity)
         resize();
-    employees[size] = e;
     ++size;
+    employees[size - 1] = e;
     cout << "Сотрудник добавлен.\n";
 }
 
