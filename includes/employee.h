@@ -10,22 +10,23 @@ enum class EmployeeType {
     DIRECTOR
 };
 
-std::string employeeTypeToString(EmployeeType type);
+class App;
 
 class Employee {
   private:
-    int employeeId;
-    float salary;
-    Date hireDate;
-    EmployeeType type;
+    int employeeId{};
+    float salary{};
+    Date hireDate{};
+    EmployeeType type{EmployeeType::LABORANT};
 
   public:
     Employee() = default;
     Employee(int id, float s, Date d, EmployeeType t);
-    ~Employee() = default;
 
-    void getEmploy();
+    void getEmployDataWithoutId();
     void putEmploy() const;
-    void edit();
+    void edit(App &app);
+
     int getId() const;
+    void setId(int id);
 };

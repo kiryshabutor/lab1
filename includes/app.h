@@ -8,18 +8,19 @@ class App {
     int capacity = 0;
 
     void resize();
-    void showMenu() const;
-    void addEmployee();
-    void listEmployees() const;
-    int findById(int id) const;
-    void deleteEmployee();
-    void editEmployee();
 
   public:
     App();
-    App(const App &) = delete;
-    App &operator=(const App &) = delete;
     ~App();
 
     void run();
+
+    void showMenu() const;
+    void addEmployee();
+    void listEmployees() const;
+    void deleteEmployee();
+    void editEmployee();
+
+    int findById(int id) const;
+    bool idExists(int id) const;
 };

@@ -1,7 +1,9 @@
 ﻿#include "../includes/input_utils.h"
 
+#include <algorithm>
 #include <iostream>
 #include <regex>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 
@@ -52,29 +54,34 @@ int safePositiveInputInt(const string &prompt) {
 }
 
 float safeInputFloat(const string &prompt) {
-    regex pat(R"(^[+-]?(\d+(\.\d*)?|\.\d+)$)");
+    static const regex pat(R"(^[+-]?\d+([.,]\d{0,2})?$)");
 
     while (true) {
         string input = readLineTrimmed(prompt);
 
         if (!input.empty() && regex_match(input, pat)) {
-            try {
-                return stof(input);
-            } catch (const invalid_argument &) {
+            replace(input.begin(), input.end(), ',', '.');
+
+            stringstream ss(input);
+            ss.imbue(locale::classic());
+            float value;
+            ss >> value;
+
+            if (ss && ss.eof()) {
+                return value;
+            } else {
                 cout << "Невалидный ввод. Введите число.\n";
-            } catch (const out_of_range &) {
-                cout << "Число вне диапазона float. Введите заново.\n";
             }
         } else {
-            cout << "Некорректный ввод. Введите вещественное число (можно с + "
-                    "или -).\n";
+            cout << "Некорректный ввод.\n";
         }
     }
 }
 
 float safePositiveInputFloat(const string &prompt) {
     while (true) {
-        if (float number = safeInputFloat(prompt); number > 0)
+        float number = safeInputFloat(prompt);
+        if (number > 0.0f)
             return number;
         cout << "Число должно быть положительное\n";
     }

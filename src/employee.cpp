@@ -1,5 +1,7 @@
 ﻿#include "../includes/employee.h"
+#include "../includes/app.h"
 #include "../includes/input_utils.h"
+#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -26,8 +28,7 @@ string employeeTypeToString(EmployeeType type) {
     }
 }
 
-void Employee::getEmploy() {
-    employeeId = safePositiveInputInt("Введите номер сотрудника: ");
+void Employee::getEmployDataWithoutId() {
     salary = safePositiveInputFloat("Введите оклад сотрудника: ");
     hireDate.inputDate();
 
@@ -60,6 +61,7 @@ void Employee::getEmploy() {
 
 void Employee::putEmploy() const {
     cout << "Номер: " << employeeId << "\n";
+    cout << fixed << setprecision(2);
     cout << "Оклад: " << salary << "\n";
     cout << "Дата приема: ";
     hireDate.printDate();
@@ -68,7 +70,9 @@ void Employee::putEmploy() const {
 
 int Employee::getId() const { return employeeId; }
 
-void Employee::edit() {
+void Employee::setId(int id) { employeeId = id; }
+
+void Employee::edit(App &app) {
     cout << "\nРедактирование сотрудника (ID: " << employeeId << ")\n";
     cout << "1. Изменить номер\n";
     cout << "2. Изменить оклад\n";
@@ -77,10 +81,20 @@ void Employee::edit() {
     cout << "5. Отмена\n";
     int choice = safeInputInt("Выбор: ");
     switch (choice) {
-    case 1:
-        employeeId = safePositiveInputInt("Новый номер: ");
+    case 1: {
+        int newId;
+        while (true) {
+            newId = safePositiveInputInt("Новый номер: ");
+            if (newId == employeeId)
+                break; // оставляем тот же
+            if (!app.idExists(newId))
+                break; // id свободен
+            cout << "Ошибка: ID " << newId << " уже занят. Введите другой.\n";
+        }
+        employeeId = newId;
         cout << "Готово.\n";
         break;
+    }
     case 2:
         salary = safePositiveInputFloat("Новый оклад: ");
         cout << "Готово.\n";

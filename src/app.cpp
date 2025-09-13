@@ -28,14 +28,26 @@ void App::showMenu() const {
     cout << "5. Выход\n";
 }
 
+bool App::idExists(int id) const { return findById(id) != -1; }
+
 void App::addEmployee() {
     Employee e;
     cout << "\n--- Добавление сотрудника ---\n";
-    e.getEmploy();
+
+    int id;
+    while (true) {
+        id = safePositiveInputInt("Введите номер сотрудника: ");
+        if (!idExists(id))
+            break;
+        cout << "Ошибка: ID " << id << " уже занят. Введите другой.\n";
+    }
+    e.setId(id);
+    e.getEmployDataWithoutId();
+
     while (size >= capacity)
         resize();
+    employees[size] = e;
     ++size;
-    employees[size - 1] = e;
     cout << "Сотрудник добавлен.\n";
 }
 
@@ -87,7 +99,7 @@ void App::editEmployee() {
         cout << "Сотрудник с таким ID не найден.\n";
         return;
     }
-    employees[idx].edit();
+    employees[idx].edit(*this);
 }
 
 void App::run() {
