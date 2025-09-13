@@ -44,10 +44,10 @@ void App::addEmployee() {
     e.setId(id);
     e.getEmployDataWithoutId();
 
-    if (size >= capacity)
+    while (size >= capacity)
         resize();
-    employees[size] = e;
     ++size;
+    employees[size - 1] = e;
     cout << "Сотрудник добавлен.\n";
 }
 
