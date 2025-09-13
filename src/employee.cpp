@@ -72,7 +72,7 @@ int Employee::getId() const { return employeeId; }
 
 void Employee::setId(int id) { employeeId = id; }
 
-void Employee::edit(App &app) {
+void Employee::edit(const App &app) {
     cout << "\nРедактирование сотрудника (ID: " << employeeId << ")\n";
     cout << "1. Изменить номер\n";
     cout << "2. Изменить оклад\n";
@@ -85,10 +85,8 @@ void Employee::edit(App &app) {
         int newId;
         while (true) {
             newId = safePositiveInputInt("Новый номер: ");
-            if (newId == employeeId)
-                break; // оставляем тот же
-            if (!app.idExists(newId))
-                break; // id свободен
+            if (newId == employeeId || !app.idExists(newId))
+                break;
             cout << "Ошибка: ID " << newId << " уже занят. Введите другой.\n";
         }
         employeeId = newId;

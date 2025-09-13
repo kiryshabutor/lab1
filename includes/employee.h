@@ -25,7 +25,7 @@ class Employee {
 
     void getEmployDataWithoutId();
     void putEmploy() const;
-    void edit(App &app);
+    void edit(const App &app);
 
     int getId() const;
     void setId(int id);

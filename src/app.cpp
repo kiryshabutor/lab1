@@ -44,7 +44,7 @@ void App::addEmployee() {
     e.setId(id);
     e.getEmployDataWithoutId();
 
-    while (size >= capacity)
+    if (size >= capacity)
         resize();
     employees[size] = e;
     ++size;
