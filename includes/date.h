@@ -2,7 +2,7 @@
 #include <string>
 
 class Date {
-  private:
+private:
     int day;
     int month;
     int year;
@@ -12,14 +12,19 @@ class Date {
     int currentYear;
 
     bool isLeapYear(int y) const;
+
     bool isValidDate(int d, int m, int y) const;
+
     void getCurrentDate();
 
-  public:
+public:
     Date();
+
     Date(int d, int m, int y);
+
     ~Date() = default;
 
     void inputDate();
+
     void printDate() const;
 };

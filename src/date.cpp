@@ -28,8 +28,10 @@ bool Date::isValidDate(int d, int m, int y) const {
         return false;
     }
 
-    array<int, 12> daysInMonth = {31, 28, 31, 30, 31, 30,
-                                  31, 31, 30, 31, 30, 31};
+    array<int, 12> daysInMonth = {
+        31, 28, 31, 30, 31, 30,
+        31, 31, 30, 31, 30, 31
+    };
     if (isLeapYear(y))
         daysInMonth[1] = 29;
 

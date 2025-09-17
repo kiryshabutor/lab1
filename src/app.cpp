@@ -107,23 +107,23 @@ void App::run() {
         showMenu();
         int choice = safeInputInt("Your choice: ");
         switch (choice) {
-        case 1:
-            addEmployee();
-            break;
-        case 2:
-            deleteEmployee();
-            break;
-        case 3:
-            listEmployees();
-            break;
-        case 4:
-            editEmployee();
-            break;
-        case 5:
-            cout << "Exiting.\n";
-            return;
-        default:
-            cout << "Invalid menu option.\n";
+            case 1:
+                addEmployee();
+                break;
+            case 2:
+                deleteEmployee();
+                break;
+            case 3:
+                listEmployees();
+                break;
+            case 4:
+                editEmployee();
+                break;
+            case 5:
+                cout << "Exiting.\n";
+                return;
+            default:
+                cout << "Invalid menu option.\n";
         }
     }
 }
