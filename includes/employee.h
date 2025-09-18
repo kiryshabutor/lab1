@@ -22,7 +22,7 @@ private:
 public:
     Employee() = default;
 
-    Employee(int id, float s, Date d, EmployeeType t);
+    Employee(int id, float s, const Date& d, EmployeeType t);
 
     void getEmployDataWithoutId();
 

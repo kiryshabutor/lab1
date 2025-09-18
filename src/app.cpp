@@ -9,9 +9,9 @@ App::App() = default;
 App::~App() { delete[] employees; }
 
 void App::resize() {
-    int newCapacity = (capacity == 0) ? 2 : capacity * 2;
-    auto newArr = new Employee[newCapacity];
-    int limit = (size < newCapacity) ? size : newCapacity;
+    const int newCapacity = (capacity == 0) ? 2 : capacity * 2;
+    const auto newArr = new Employee[newCapacity];
+    const int limit = (size < newCapacity) ? size : newCapacity;
     for (int i = 0; i < limit; ++i)
         newArr[i] = employees[i];
     delete[] employees;
@@ -19,7 +19,7 @@ void App::resize() {
     capacity = newCapacity;
 }
 
-void App::showMenu() const {
+void App::showMenu(){
     cout << "\n==== MENU ====\n";
     cout << "1. Add employee\n";
     cout << "2. Delete employee\n";
@@ -28,7 +28,7 @@ void App::showMenu() const {
     cout << "5. Exit\n";
 }
 
-bool App::idExists(int id) const { return findById(id) != -1; }
+bool App::idExists(const int id) const { return findById(id) != -1; }
 
 void App::addEmployee() {
     Employee e;
@@ -63,7 +63,7 @@ void App::listEmployees() const {
     }
 }
 
-int App::findById(int id) const {
+int App::findById(const int id) const {
     for (int i = 0; i < size; ++i) {
         if (employees[i].getId() == id)
             return i;
@@ -88,13 +88,13 @@ void App::deleteEmployee() {
     cout << "Employee deleted.\n";
 }
 
-void App::editEmployee() {
+void App::editEmployee() const{
     if (size == 0) {
         cout << "Nothing to edit, employee list is empty.\n";
         return;
     }
-    int id = safePositiveInputInt("Enter employee ID to edit: ");
-    int idx = findById(id);
+    const int id = safePositiveInputInt("Enter employee ID to edit: ");
+    const int idx = findById(id);
     if (idx == -1) {
         cout << "Employee with this ID not found.\n";
         return;
@@ -105,8 +105,7 @@ void App::editEmployee() {
 void App::run() {
     while (true) {
         showMenu();
-        int choice = safeInputInt("Your choice: ");
-        switch (choice) {
+        switch (safeInputInt("Your choice: ")) {
             case 1:
                 addEmployee();
                 break;

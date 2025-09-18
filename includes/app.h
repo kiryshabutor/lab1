@@ -9,7 +9,7 @@ private:
 
     void resize();
 
-    void showMenu() const;
+    static void showMenu();
 
     void addEmployee();
 
@@ -17,9 +17,9 @@ private:
 
     void deleteEmployee();
 
-    void editEmployee();
+    void editEmployee() const;
 
-    int findById(int id) const;
+    [[nodiscard]] int findById(int id) const;
 
 public:
     App();
@@ -32,5 +32,5 @@ public:
 
     void run();
 
-    bool idExists(int id) const;
+    [[nodiscard]] bool idExists(int id) const;
 };

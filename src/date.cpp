@@ -13,11 +13,11 @@ Date::Date(int d, int m, int y) : day(d), month(m), year(y) {
     getCurrentDate();
 }
 
-bool Date::isLeapYear(int y) const {
+bool Date::isLeapYear(int y) {
     return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
 }
 
-bool Date::isValidDate(int d, int m, int y) const {
+bool Date::isValidDate(const int d,const int m,const int y) const {
     if (y < 1 || y > currentYear) {
         cout << "Invalid year\n";
         return false;
@@ -52,7 +52,7 @@ bool Date::isValidDate(int d, int m, int y) const {
 void Date::getCurrentDate() {
     using namespace std::chrono;
 
-    auto now = system_clock::now();
+    const auto now = system_clock::now();
     time_t timeNow = system_clock::to_time_t(now);
 
     tm localTime{};
@@ -68,14 +68,11 @@ void Date::getCurrentDate() {
 }
 
 void Date::inputDate() {
-    int d;
-    int m;
-    int y;
     while (true) {
         cout << "Enter date:\n";
-        d = safePositiveInputInt("Day: ");
-        m = safePositiveInputInt("Month: ");
-        y = safePositiveInputInt("Year: ");
+        const int d = safePositiveInputInt("Day: ");
+        const int m = safePositiveInputInt("Month: ");
+        const int y = safePositiveInputInt("Year: ");
 
         if (isValidDate(d, m, y)) {
             day = d;

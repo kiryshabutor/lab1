@@ -11,7 +11,7 @@ private:
     int currentMonth;
     int currentYear;
 
-    bool isLeapYear(int y) const;
+    static bool isLeapYear(int y);
 
     bool isValidDate(int d, int m, int y) const;
 

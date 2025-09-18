@@ -7,7 +7,7 @@
 using namespace std;
 using enum EmployeeType;
 
-Employee::Employee(int id, float s, Date d, EmployeeType t)
+Employee::Employee(const int id, const float s, const Date& d, const EmployeeType t)
     : employeeId(id), salary(s), hireDate(d), type(t) {
 }
 
@@ -71,7 +71,7 @@ void Employee::putEmploy() const {
 
 int Employee::getId() const { return employeeId; }
 
-void Employee::setId(int id) { employeeId = id; }
+void Employee::setId(const int id) { employeeId = id; }
 
 void Employee::edit(const App &app) {
     cout << "\nEditing employee (ID: " << employeeId << ")\n";
@@ -80,8 +80,7 @@ void Employee::edit(const App &app) {
     cout << "3. Change hire date\n";
     cout << "4. Change position\n";
     cout << "5. Cancel\n";
-    int choice = safeInputInt("Choice: ");
-    switch (choice) {
+    switch (safeInputInt("Choice: ")) {
         case 1: {
             int newId;
             while (true) {
