@@ -47,7 +47,7 @@ int safeInputInt(const string &prompt) {
 
 int safePositiveInputInt(const string &prompt) {
     while (true) {
-        if (int number = safeInputInt(prompt); number > 0)
+        if (const int number = safeInputInt(prompt); number > 0)
             return number;
         cout << "Number must be positive.\n";
     }
@@ -80,7 +80,7 @@ float safeInputFloat(const string &prompt) {
 
 float safePositiveInputFloat(const string &prompt) {
     while (true) {
-        if (float number = safeInputFloat(prompt); number > 0.0f)
+        if (const float number = safeInputFloat(prompt); number > 0.0f)
             return number;
 
         cout << "Number must be positive.\n";
